@@ -10,6 +10,7 @@ public class PlayerMovementData : INetworkSerializable
     public PlayerMovementData()
     {
         playerMovementDestination = Vector2.zero;
+        playerMovementTime = 0;
         isMoveRequested = isMoving = false;
     }
 
