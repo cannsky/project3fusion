@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Netcode;
-using UnityEngine;
 
 public class PlayerManaData : INetworkSerializable
 {
@@ -18,11 +15,11 @@ public class PlayerManaData : INetworkSerializable
         playerManaRegenerationSpeed = 0;
     }
 
-    public PlayerManaData(PlayerChampionData playerChampionData)
+    public PlayerManaData(Champion champion)
     {
-        playerMana = playerChampionData.totalMana - 50;
-        playerTotalMana = playerChampionData.totalMana;
-        playerManaRegenerationSpeed = playerChampionData.manaRegenerationSpeed;
+        playerMana = champion.totalMana - 50;
+        playerTotalMana = champion.totalMana;
+        playerManaRegenerationSpeed = champion.manaRegenerationSpeed;
     }
 
     public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter

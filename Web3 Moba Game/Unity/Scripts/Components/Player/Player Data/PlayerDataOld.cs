@@ -53,6 +53,7 @@ public struct PlayerDataOld : INetworkSerializable
 
     //private float UpdateTotalMana() => playerTotalMana = playerChampionData.totalMana + SumExtraTotalMana();
     //private float UpdateManaRegenerationSpeed() => playerManaRegenerationSpeed = playerChampionData.manaRegenerationSpeed + (playerChampionData.manaRegenerationSpeed * SumExtraManaRegenerationSpeed() / 100);
+    /*
     private float UpdateMovementSpeed() => playerMovementSpeed = playerChampionData.movementSpeed + (playerChampionData.movementSpeed * SumExtraMovementSpeed() / 100);
     private float SumExtraTotalMana() => items.Sum(item => item.extraTotalMana) + runes.Sum(rune => rune.extraTotalMana);
     private float SumExtraManaRegenerationSpeed() => items.Sum(item => item.extraManaRegenerationSpeed) + runes.Sum(rune => rune.extraManaRegenerationSpeed);
@@ -63,7 +64,7 @@ public struct PlayerDataOld : INetworkSerializable
     private float SumExtraAPArmor() => items.Sum(item => item.extraAPArmor) + runes.Sum(rune => rune.extraAPArmor);
     private float SumExtraADArmorPiercing() => items.Sum(item => item.extraADArmorPiercing) + runes.Sum(rune => rune.extraADArmorPiercing);
     private float SumExtraAPArmorPiercing() => items.Sum(item => item.extraAPArmorPiercing) + runes.Sum(rune => rune.extraAPArmorPiercing);
-    private float SumExtraMovementSpeed() => items.Sum(item => item.extraMovementSpeed) + runes.Sum(rune => rune.extraMovementSpeed);
+    private float SumExtraMovementSpeed() => items.Sum(item => item.extraMovementSpeed) + runes.Sum(rune => rune.extraMovementSpeed);*/
 
     public PlayerDataOld GeneratePlayerData() => new PlayerDataOld()
     {
@@ -73,15 +74,5 @@ public struct PlayerDataOld : INetworkSerializable
         items = items,
         runes = runes,
         playerMovementSpeed = playerMovementSpeed,
-    };
-
-    public PlayerDataOld UpdatePlayerData() => new PlayerDataOld()
-    {
-        playerID = playerID,
-        playerTeam = playerTeam,
-        playerChampionData = playerChampionData,
-        items = items,
-        runes = runes,
-        playerMovementSpeed = UpdateMovementSpeed(),
     };
 }

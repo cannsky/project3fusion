@@ -1,4 +1,3 @@
-using System.Linq;
 using Unity.Netcode;
 
 public class PlayerHealthData : INetworkSerializable
@@ -18,12 +17,12 @@ public class PlayerHealthData : INetworkSerializable
         playerHealthStoleMultiplier = 0;
     }
 
-    public PlayerHealthData(PlayerChampionData playerChampionData)
+    public PlayerHealthData(Champion champion)
     {
-        playerHealth = playerChampionData.totalHealth - 50;
-        playerTotalHealth = playerChampionData.totalHealth;
-        playerHealthRegenerationSpeed = playerChampionData.healthRegenerationSpeed;
-        playerHealthStoleMultiplier = playerChampionData.healthStoleMultiplier;
+        playerHealth = champion.totalHealth - 50;
+        playerTotalHealth = champion.totalHealth;
+        playerHealthRegenerationSpeed = champion.healthRegenerationSpeed;
+        playerHealthStoleMultiplier = champion.healthStoleMultiplier;
     }
 
     public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter

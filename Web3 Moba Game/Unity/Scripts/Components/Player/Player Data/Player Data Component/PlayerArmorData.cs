@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Netcode;
-using UnityEngine;
 
 public class PlayerArmorData : INetworkSerializable
 {
@@ -14,10 +11,10 @@ public class PlayerArmorData : INetworkSerializable
         playerAPArmor = 0;
     }
 
-    public PlayerArmorData(PlayerChampionData playerChampionData)
+    public PlayerArmorData(Champion champion)
     {
-        playerADArmor = playerChampionData.adArmor;
-        playerAPArmor = playerChampionData.apArmor;
+        playerADArmor = champion.adArmor;
+        playerAPArmor = champion.apArmor;
     }
 
     public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter

@@ -68,7 +68,7 @@ public class PlayerAttack
 
         Player targetPlayer = ServerManager.Instance.players[player.playerData.Value.playerAttackData.playerTargetID];
 
-        targetPlayer.playerEvent.ApplyDamage(player.playerData.Value.playerChampionData.adAttackDamage, player.playerData.Value.playerChampionData.apAttackDamage);
+        targetPlayer.playerEvent.ApplyDamage(player.playerData.Value.playerDamageData.playerADAttackDamage, player.playerData.Value.playerDamageData.playerAPAttackDamage);
 
         player.PlayerAttackAnimationOrderClientRpc();
     }

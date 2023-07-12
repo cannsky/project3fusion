@@ -31,17 +31,17 @@ public class PlayerData : INetworkSerializable
         playerMovementData = new PlayerMovementData();
     }
 
-    public PlayerData(Champion networkChampion)
+    public PlayerData(Champion champion)
     {
-        playerChampionData = new PlayerChampionData(networkChampion);
+        playerChampionData = new PlayerChampionData(champion);
         playerAnimationData = new PlayerAnimationData();
         playerAttackData = new PlayerAttackData();
         playerEquipmentData = new PlayerEquipmentData();
         playerMovementData = new PlayerMovementData();
-        playerArmorData = new PlayerArmorData(playerChampionData);
-        playerDamageData = new PlayerDamageData(playerChampionData);
-        playerHealthData = new PlayerHealthData(playerChampionData);
-        playerManaData = new PlayerManaData(playerChampionData);
+        playerArmorData = new PlayerArmorData(champion);
+        playerDamageData = new PlayerDamageData(champion);
+        playerHealthData = new PlayerHealthData(champion);
+        playerManaData = new PlayerManaData(champion);
         isSet = true;
     }
 

@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Netcode;
-using UnityEngine;
 
 public class PlayerDamageData : INetworkSerializable
 {
@@ -20,13 +17,13 @@ public class PlayerDamageData : INetworkSerializable
         playerAttackCooldownTime = 0;
     }
 
-    public PlayerDamageData(PlayerChampionData playerChampionData)
+    public PlayerDamageData(Champion champion)
     {
-        playerADAttackDamage = playerChampionData.adAttackDamage;
-        playerAPAttackDamage = playerChampionData.apAttackDamage;
-        playerADArmorPiercing = playerChampionData.adArmorPiercing;
-        playerAPArmorPiercing = playerChampionData.apArmorPiercing;
-        playerAttackCooldownTime = playerChampionData.attackCooldownTime;
+        playerADAttackDamage = champion.adAttackDamage;
+        playerAPAttackDamage = champion.apAttackDamage;
+        playerADArmorPiercing = champion.adArmorPiercing;
+        playerAPArmorPiercing = champion.apArmorPiercing;
+        playerAttackCooldownTime = champion.attackCooldownTime;
     }
 
     public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
