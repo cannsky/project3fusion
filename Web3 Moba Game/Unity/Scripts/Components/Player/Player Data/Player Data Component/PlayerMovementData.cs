@@ -4,28 +4,21 @@ using UnityEngine;
 public class PlayerMovementData : INetworkSerializable
 {
     public Vector2 playerMovementDestination;
-    public float playerMovementSpeed, playerMovementTime;
+    public float playerMovementTime;
     public bool isMoveRequested, isMoving;
 
     public PlayerMovementData()
     {
         playerMovementDestination = Vector2.zero;
-        playerMovementSpeed = playerMovementTime = 0;
         isMoveRequested = isMoving = false;
     }
 
     public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
     {
         serializer.SerializeValue(ref playerMovementDestination);
-        serializer.SerializeValue(ref playerMovementSpeed);
         serializer.SerializeValue(ref playerMovementTime);
         serializer.SerializeValue(ref isMoveRequested);
         serializer.SerializeValue(ref isMoving);
-    }
-
-    public void UpdateData(float playerMovementSpeed = -1)
-    {
-        this.playerMovementSpeed = playerMovementSpeed < 0 ? this.playerMovementSpeed : playerMovementSpeed;
     }
 
     public void UpdateData(bool isMoveRequested = false, bool isMoving = false)
