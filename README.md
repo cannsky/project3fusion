@@ -1,10 +1,16 @@
 ### Project 3 Fusion
 
-**This project is an experimental project to see the limits of blockchain gaming.** As a team of three people, we try to bring example games to the web3 space with transferring the functionalty from web2 to web3 as much as possible. Using this approach allow us to develop needed tools better for the web3 game developers. The real methodolgy behind is creating a validator, player and smart contract trio, whose connectivity level can be adjusted according to the transaction per second of the chain. This means, validator can be in full, half or little contact with smart contract. also keep in mind that what we call validator is a game server with specific web3 software embeded to it.
+**This project is an experimental project to see the limits of blockchain gaming.** As a team of three people, we open sourcely develop a web3 game development kit that enables web3 game developers to build more complex web3 games. The real methodolgy behind is creating a validator, player and smart contract trio whose connectivity level can be adjusted according to the transaction per second of the chain. This means, validator can be in full, half or little contact with smart contract. Also keep in mind that what we call validator, is a game server with specific web3 software embeded to it. 
 
-What we want to imply that, with using a validator we are able to give heavy work to the validator while smart contract is handling the data storage and basic calculations. This validator can be full, half or small chain connected validator. Here is a quick diagram for everyone to understand what project 3 fusion has,
+**There is an important thing to note,** it is impossible to place a complex game to the blockchain right now due to the speeds. This project includes an example moba game as starting point which takes 7000 inputs per player in each game which leads to 70000 inputs in total game. Here is the great question: can a blockchain network handle 70000 clicks just for a single game? Maybe yes, maybe not. We'll see at the future. That's why, keep in mind that if you increase your complexity way more higher, creating a full-chain blockchain game seems to be impossible right now.
 
+That's why, we use a random validator which is assigned to the network and giving its credentials to the smart contract. Later, smart contract informs players to connect to the validator to play the game.
 
+What we want to imply that, with using a validator we are able to give heavy work to the validator while smart contract is handling the data storage and basic calculations. This validator can be full, half or small chain connected validator. Here is a quick diagram for everyone to understand the simple architecture of project 3 fusion,
+
+What is covered in this project is
+- Data transfer between player, smart contract and validator
+- Connectivity adjustment between player, smart contract and validator
 
 ## Goals
 
