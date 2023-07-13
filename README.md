@@ -1,6 +1,6 @@
 ## Project 3 Fusion
 
-**This project is an experimental project to see the limits of blockchain gaming.** As a team of three people, we try to bring an example moba game to the web3 space with transferring the functionalty from web2 to web3 as much as possible. Using this approach allow us to develop needed tools better for the web3 game developers. So what we aim is basically collecting a bunch of tools together for speeding the web3 game development along with templates.
+**This project is an experimental project to see the limits of blockchain gaming.** As a team of three people, we try to bring an example moba game to the web3 space with transferring the functionalty from web2 to web3 as much as possible. Using this approach allow us to develop needed tools better for the web3 game developers.
 
 ## Goals
 
