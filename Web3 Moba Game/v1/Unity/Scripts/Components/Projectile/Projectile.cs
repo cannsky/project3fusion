@@ -5,6 +5,7 @@ public class Projectile : NetworkBehaviour
 {
     public Tower tower;
     public Player targetPlayer;
+    public float projectileSpeed;
 
     public void SetTarget(Player targetPlayer) => this.targetPlayer = targetPlayer;
 
@@ -12,12 +13,11 @@ public class Projectile : NetworkBehaviour
     {
         if (IsServer)
         {
-            //Vector3 direction = targetPlayer.transform.position - transform.position;
-            //transform.rotation = Quaternion.LookRotation(direction);
-            transform.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, 5f * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, projectileSpeed * Time.deltaTime);
 
             if(Vector3.Distance(transform.position, targetPlayer.transform.position) <= 0.5f)
             {
+                targetPlayer.playerEvent.ApplyDamage(10, 0);
                 gameObject.GetComponent<NetworkObject>().Despawn(); 
             }
         }

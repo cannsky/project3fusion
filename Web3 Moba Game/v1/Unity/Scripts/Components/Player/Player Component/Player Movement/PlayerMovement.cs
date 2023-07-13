@@ -22,8 +22,12 @@ public class PlayerMovement
 
     public void OnStart()
     {
-        if (player.IsServer) player.transform.position = new Vector3(10, 8, 8);
         agent = player.GetComponent<NavMeshAgent>();
+        if (player.IsServer)
+        {
+            if (player.IsHost) player.playerSpawn = new PlayerSpawn(player);
+            player.playerSpawn.Spawn();
+        }
     }
 
     public void OnUpdate()
@@ -50,7 +54,7 @@ public class PlayerMovement
         if (!player.playerData.Value.playerMovementData.isMoveRequested) return;
 
         player.playerData.Value.playerAttackData.UpdateData(isPlayerAttacking: false);
-
+        
         agent.SetDestination(new Vector3(player.playerData.Value.playerMovementData.playerMovementDestination.x, 0, player.playerData.Value.playerMovementData.playerMovementDestination.y));
         
         player.playerData.Value.playerMovementData.UpdateData(isMoveRequested: false, isMoving: true);

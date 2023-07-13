@@ -10,6 +10,13 @@ public class PlayerEvent
 
     public void ApplyDamage(float adDamage, float apDamage)
     {
+        if(player.playerData.Value.playerHealthData.ReduceHealth(adDamage + apDamage) <= 0) Die();
+    }
 
+    public void Die()
+    {
+        player.playerData.Value.playerHealthData.FillHealth();
+        player.playerData.Value.playerManaData.FillMana();
+        player.playerSpawn.Spawn();
     }
 }

@@ -40,5 +40,7 @@ public class PlayerManaData : INetworkSerializable
         this.playerManaRegenerationSpeed = playerManaRegenerationSpeed < 0 ? this.playerManaRegenerationSpeed : playerManaRegenerationSpeed;
     }
 
+    public void FillMana() => playerMana = playerTotalMana;
+
     public void RegenerateMana() => playerMana = playerMana >= playerTotalMana ? playerTotalMana : playerMana + playerManaRegenerationSpeed;
 }

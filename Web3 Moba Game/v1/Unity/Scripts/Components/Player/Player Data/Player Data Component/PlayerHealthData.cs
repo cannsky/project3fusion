@@ -33,17 +33,16 @@ public class PlayerHealthData : INetworkSerializable
         serializer.SerializeValue(ref playerHealthStoleMultiplier);
     }
 
-    public void UpdateData(float playerHealth = -1)
-    {
-        this.playerHealth = playerHealth < 0 ? this.playerHealth : playerHealth;
-    }
-
     public void UpdateData(float playerTotalHealth = -1, float playerHealthRegenerationSpeed = -1, float playerHealthStoleMultiplier = -1)
     {
         this.playerTotalHealth = playerTotalHealth < 0 ? this.playerTotalHealth : playerTotalHealth;
         this.playerHealthRegenerationSpeed = playerHealthRegenerationSpeed < 0 ? this.playerHealthRegenerationSpeed : playerHealthRegenerationSpeed;
         this.playerHealthStoleMultiplier = playerHealthStoleMultiplier < 0 ? this.playerHealthStoleMultiplier : playerHealthStoleMultiplier;
     }
+
+    public float FillHealth() => playerHealth = playerTotalHealth;
+
+    public float ReduceHealth(float damage) => playerHealth -= damage;
 
     public float RegenerateHealth() => playerHealth = playerHealth >= playerTotalHealth ? playerTotalHealth : playerHealth + playerHealthRegenerationSpeed;
 

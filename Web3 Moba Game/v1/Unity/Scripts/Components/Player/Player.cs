@@ -17,6 +17,7 @@ public class Player : NetworkBehaviour
     public PlayerEvent playerEvent;
     public PlayerInput playerInput;
     public PlayerMovement playerMovement;
+    public PlayerSpawn playerSpawn;
     public PlayerUI playerUI;
     public PlayerVFX playerVFX;
 

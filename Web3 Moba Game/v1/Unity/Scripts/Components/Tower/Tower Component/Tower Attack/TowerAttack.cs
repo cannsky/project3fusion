@@ -20,11 +20,15 @@ public class TowerAttack
             {
                 Player targetPlayer = collider.transform.GetComponent<Player>();
 
+                if ((TowerSettings.Team) targetPlayer.playerData.Value.playerTeam == tower.towerSettings.towerTeam) continue;
+
                 GameObject projectileGameObject = tower.InstantiateGameObject(tower.towerSettings.towerProjectilePrefab, tower.transform.position, Quaternion.identity);
                 projectileGameObject.GetComponent<NetworkObject>().Spawn();
 
                 Projectile projectile = projectileGameObject.GetComponent<Projectile>();
                 projectile.SetTarget(targetPlayer);
+                projectile.projectileSpeed = tower.towerSettings.projectileSpeed;
+                projectile.transform.position = new Vector3(projectile.transform.position.x, projectile.transform.position.y + tower.towerSettings.towerAttackHeight, projectile.transform.position.z);
 
                 tower.towerData.Value.towerAttackData.UpdateData(Time.time);
             }

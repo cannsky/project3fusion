@@ -49,8 +49,9 @@ public class PlayerAwaitSetupCoroutine
 
     public void ServerSetup()
     {
-        player.playerAttack = new PlayerAttack(player);
+        player.playerSpawn = new PlayerSpawn(player);
         player.playerEvent = new PlayerEvent(player);
+        player.playerAttack = new PlayerAttack(player);
         player.playerMovement = new PlayerMovement(player);
         player.playerMovement.OnStart();
         player.playerCoroutine.OnStart();

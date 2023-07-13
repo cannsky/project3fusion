@@ -31,6 +31,5 @@ public class TowerAttackData : INetworkSerializable
     public void UpdateData(float towerLastAttackTime)
     {
         this.towerLastAttackTime = towerLastAttackTime;
-        Debug.Log(towerLastAttackTime);
     }
 }

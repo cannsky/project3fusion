@@ -10,7 +10,7 @@ public class PlayerSettings
     [Header("Player General")]
     public string defaultLayerName = "Default", terrainLayerName = "Terrain";
     [Header("Player Camera")]
-    public Vector3 playerCameraOffset = new Vector3(0, 7, -7);
+    public Vector3 playerCameraOffset = new Vector3(0, 10, -10);
     public float playerCameraMoveSpeed = 0.1f;
     [Header("Player Movement")]
     public float playerRotationSpeed = 8f;

@@ -2,7 +2,7 @@ using Unity.Netcode;
 
 public class PlayerData : INetworkSerializable
 {
-    public enum PlayerTeam { TeamBlue, TeamRed }
+    public enum PlayerTeam { Blue, Red, Neutral }
 
     public PlayerAnimationData playerAnimationData;
     public PlayerArmorData playerArmorData;
