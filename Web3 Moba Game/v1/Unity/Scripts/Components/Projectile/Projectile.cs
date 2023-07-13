@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class Projectile : NetworkBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Tower tower;
+    public Player targetPlayer;
 
-    // Update is called once per frame
-    void Update()
+    public void SetTarget(Player targetPlayer) => this.targetPlayer = targetPlayer;
+
+    public void Update()
     {
-        
+        if (IsServer)
+        {
+            Vector3 direction = targetPlayer.transform.position - transform.position;
+            transform.rotation = Quaternion.LookRotation(direction);
+        }
     }
 }

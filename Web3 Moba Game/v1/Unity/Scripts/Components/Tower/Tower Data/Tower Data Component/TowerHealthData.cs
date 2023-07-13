@@ -1,18 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Unity.Netcode;
 
-public class TowerHealthData : MonoBehaviour
+public class TowerHealthData : INetworkSerializable
 {
-    // Start is called before the first frame update
-    void Start()
+    public float towerHealth;
+    public float towerTotalHealth;
+
+    public TowerHealthData()
     {
-        
+        towerHealth = 0;
+        towerTotalHealth = 0;
     }
 
-    // Update is called once per frame
-    void Update()
+    public TowerHealthData(TowerSettings towerSettings)
     {
-        
+        towerHealth = towerSettings.towerTotalHealth;
+        towerTotalHealth = towerSettings.towerTotalHealth;
+    }
+
+    public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
+    {
+        serializer.SerializeValue(ref towerHealth);
+        serializer.SerializeValue(ref towerTotalHealth);
     }
 }
