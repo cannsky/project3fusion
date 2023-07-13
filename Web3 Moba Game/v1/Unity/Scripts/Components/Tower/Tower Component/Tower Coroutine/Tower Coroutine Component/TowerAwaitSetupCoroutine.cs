@@ -12,20 +12,21 @@ public class TowerAwaitSetupCoroutine
     {
         while (true)
         {
-            if (tower.towerData != null && tower.towerData.Value.isSet)
+            if (tower.towerData != null && tower.towerData.Value != null && tower.towerData.Value.isSet)
             {
                 Setup();
                 break;
             }
             else yield return null;
         }
+        yield return null;
     }
 
     public void Setup()
     {
-        tower.isReady = true;
         if (tower.IsClient) ClientSetup();
         if (tower.IsServer) ServerSetup();
+        tower.isReady = true;
     }
 
     public void ClientSetup()

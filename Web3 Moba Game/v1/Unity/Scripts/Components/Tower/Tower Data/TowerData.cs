@@ -11,12 +11,14 @@ public class TowerData : INetworkSerializable
     {
         towerAttackData = new TowerAttackData();
         towerHealthData = new TowerHealthData();
+        isSet = false;
     }
 
     public TowerData(TowerSettings towerSettings)
     {
         towerAttackData = new TowerAttackData(towerSettings);
         towerHealthData = new TowerHealthData(towerSettings);
+        isSet = true;
     }
 
     public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter

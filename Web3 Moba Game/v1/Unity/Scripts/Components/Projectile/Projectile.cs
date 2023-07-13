@@ -12,8 +12,14 @@ public class Projectile : NetworkBehaviour
     {
         if (IsServer)
         {
-            Vector3 direction = targetPlayer.transform.position - transform.position;
-            transform.rotation = Quaternion.LookRotation(direction);
+            //Vector3 direction = targetPlayer.transform.position - transform.position;
+            //transform.rotation = Quaternion.LookRotation(direction);
+            transform.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, 5f * Time.deltaTime);
+
+            if(Vector3.Distance(transform.position, targetPlayer.transform.position) <= 0.5f)
+            {
+                gameObject.GetComponent<NetworkObject>().Despawn(); 
+            }
         }
     }
 }

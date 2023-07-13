@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public class TowerAttack
@@ -11,15 +12,16 @@ public class TowerAttack
     public void OnUpdate()
     {
         if (!tower.IsServer) return;
-        if (Time.time <= tower.towerData.Value.towerAttackData.towerLastAttackTime + tower.towerData.Value.towerAttackData.towerAttackCooldown)
+        if (Time.time >= tower.towerData.Value.towerAttackData.towerLastAttackTime + tower.towerData.Value.towerAttackData.towerAttackCooldown)
         {
             Collider[] colliders = Physics.OverlapSphere(tower.transform.position, tower.towerData.Value.towerAttackData.towerAttackRange, LayerMask.GetMask(tower.towerSettings.playerLayerName));
-
+            
             foreach (Collider collider in colliders)
             {
                 Player targetPlayer = collider.transform.GetComponent<Player>();
 
                 GameObject projectileGameObject = tower.InstantiateGameObject(tower.towerSettings.towerProjectilePrefab, tower.transform.position, Quaternion.identity);
+                projectileGameObject.GetComponent<NetworkObject>().Spawn();
 
                 Projectile projectile = projectileGameObject.GetComponent<Projectile>();
                 projectile.SetTarget(targetPlayer);

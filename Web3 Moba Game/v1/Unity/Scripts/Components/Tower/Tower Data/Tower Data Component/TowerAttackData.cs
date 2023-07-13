@@ -1,4 +1,5 @@
 using Unity.Netcode;
+using UnityEngine;
 
 public class TowerAttackData : INetworkSerializable
 {
@@ -30,5 +31,6 @@ public class TowerAttackData : INetworkSerializable
     public void UpdateData(float towerLastAttackTime)
     {
         this.towerLastAttackTime = towerLastAttackTime;
+        Debug.Log(towerLastAttackTime);
     }
 }

@@ -9,17 +9,19 @@ public class ServerManager : NetworkBehaviour
     public static ServerManager Instance;
 
     public Player[] players = new Player[10];
+    public List<GameObject> towers;
 
     private NetworkVariable<int> playerCount = new NetworkVariable<int>();
     private List<ServerCallback> callbacks = new List<ServerCallback>() { new ServerOnClientConnectedCallback(), new ServerOnClientDisconnectCallback() };
 
     private void Awake() => Instance = this;
 
-    private void Start() 
+    private void Start()
     {
         foreach (ServerCallback callback in callbacks) callback.InitializeCallback();
         ServerManagerArguments.Get();
         ServerManagerStarter.Start();
+        ServerManagerCoroutine.StartCoroutines();
     }
 
     public void IncreasePlayerCount() => playerCount.Value++;
