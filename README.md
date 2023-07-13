@@ -12,11 +12,11 @@ What is covered in this project is
 - Data transfer between player, smart contract and validator
 - Connectivity adjustment between player, smart contract and validator
 
-## Goals
+### Goals
 
 We aim to create tools that are useful for anyone working on the web3 games. Although it is not certain, creation of web3 moba game can be continued with extra templates and more tools.
 
-## Tools
+### Tools
 
 Here is the tools developed in this project:
 
