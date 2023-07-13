@@ -12,7 +12,7 @@ What is covered in this project is
 - Data transfer between player, smart contract and validator
 - Connectivity adjustment between player, smart contract and validator
 
-We would like to note again that, we are focused on creation of a working web3 moba game with the architecture we described. After this architecture is implemented, we will convert example project to a web3 game development kit.
+**We would like to note again that, we are focused on creation of a working web3 moba game with the architecture we described. After this architecture is implemented, we will convert example project to a web3 game development kit.**
 
 ### Goals
 
