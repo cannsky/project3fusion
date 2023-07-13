@@ -2,6 +2,16 @@
 
 **This project is an experimental project to see the limits of blockchain gaming.** As a team of three people, we try to bring an example moba game to the web3 space with transferring the functionalty from web2 to web3 as much as possible. The idea of a full-chain game is commonly used in web3 space, but without some smart shortcuts, it is not a possibility in blockchain world.
 
+## Goals
+
+We aim to create tools that are useful for anyone working on the web3 games. Although it is not certain, creation of web3 moba game can be continued with extra templates and more tools.
+
+## Tools
+
+Here is the tools developed in this project:
+
+Argent Wallet Connector: Still being worked on.
+
 This project is an open-source project in code base and easy to implement to any type of moba game.
 
 Here is the full project explanation in both game, blockchain and server side.
