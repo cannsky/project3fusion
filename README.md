@@ -1,6 +1,10 @@
 ## Project 3 Fusion
 
-**This project is an experimental project to see the limits of blockchain gaming.** As a team of three people, we try to bring an example moba game to the web3 space with transferring the functionalty from web2 to web3 as much as possible. Using this approach allow us to develop needed tools better for the web3 game developers.
+**This project is an experimental project to see the limits of blockchain gaming.** As a team of three people, we try to bring an example games to the web3 space with transferring the functionalty from web2 to web3 as much as possible. Using this approach allow us to develop needed tools better for the web3 game developers. The real methodolgy behind is creating a validator, player and smart contract trio, whose connectivity level can be adjusted according to the transaction per second of the chain. This means, validator can be in full, half or little contact with smart contract. also keep in mind that what we call validator is a game server with specific web3 software embeded to it.
+
+What we want to imply that, with using a validator we are able to give heavy work to the validator while smart contract is handling the data storage and basic calculations. This validator can be full, half or small chain connected validator. Here is a quick diagram for everyone to understand what project 3 fusion has,
+
+
 
 ## Goals
 
