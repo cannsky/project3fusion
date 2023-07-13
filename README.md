@@ -11,14 +11,10 @@ We aim to create tools that are useful for anyone working on the web3 games. Alt
 Here is the tools developed in this project:
 
 Argent Wallet Connector: Still being worked on.
+Game Validator: Ready
+Game: Ready
 
 This project is an open-source project in code base and easy to implement to any type of moba game. Here is the full project explanation in both game, blockchain and server side.
-
-### Current Stage of the Project
-
-- Web3 side is being developed along with an Unity SDK.
-- Game side is still being developed, core mechanics are ready to go.
-- Server side will be implemented soon.
 
 ### Versions
 
