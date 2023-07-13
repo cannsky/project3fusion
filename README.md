@@ -8,7 +8,7 @@ That's why, we use a random validator which is assigned to the network and givin
 
 What we want to imply that, with using a validator we are able to give heavy work to the validator while smart contract is handling the data storage and basic calculations. This validator can be full, half or small chain connected validator. Here is a quick diagram for everyone to understand the simple architecture of project 3 fusion,
 
-What is covered in this project is
+What we will try to do is,
 - Data transfer between player, smart contract and validator
 - Connectivity adjustment between player, smart contract and validator
 
