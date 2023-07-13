@@ -1,6 +1,6 @@
-## Web3 Moba Game
+## Project 3 Fusion
 
-**This project is an experimental project to see the limits of blockchain gaming.** As a team of three people, we try to bring an example moba game to the web3 space with transferring the functionalty from web2 to web3 as much as possible. The idea of a full-chain game is commonly used in web3 space, but without some smart shortcuts, it is not a possibility in blockchain world.
+**This project is an experimental project to see the limits of blockchain gaming.** As a team of three people, we try to bring an example moba game to the web3 space with transferring the functionalty from web2 to web3 as much as possible. Using this approach allow us to develop needed tools better for the web3 game developers. So what we aim is basically collecting a bunch of tools together for speeding the web3 game development along with templates.
 
 ## Goals
 
@@ -12,9 +12,7 @@ Here is the tools developed in this project:
 
 Argent Wallet Connector: Still being worked on.
 
-This project is an open-source project in code base and easy to implement to any type of moba game.
-
-Here is the full project explanation in both game, blockchain and server side.
+This project is an open-source project in code base and easy to implement to any type of moba game. Here is the full project explanation in both game, blockchain and server side.
 
 ### Current Stage of the Project
 
@@ -24,13 +22,13 @@ Here is the full project explanation in both game, blockchain and server side.
 
 ### Versions
 
-- v1: Web2 server side implementation (In Progress...)
+- v1: Completed **(Additional Features on the Way)**
 
 ### Used Technologies
 
-- Web3:
+- Smart Contract: Cairo
 - Game: Unity Engine
-- Server: Unity Netcode
+- Validator: Unity Netcode
 
 ### Player - NetworkBehaviour Class
 
