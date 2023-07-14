@@ -18,6 +18,6 @@ public class PlayerSettings
     public GameObject playerCursorVFX;
     [Header("Player UI")]
     public TMP_Text playerNameText;
-    public TMP_Text playerLevelText, playerHealthText, playerManaText, playerTotalManaText;
+    public TMP_Text playerLevelText, playerHealthText, playerManaText;
     public Slider playerHealthSlider, playerManaSlider;
 }

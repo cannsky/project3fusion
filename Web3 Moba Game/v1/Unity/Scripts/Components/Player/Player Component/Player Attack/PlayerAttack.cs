@@ -62,7 +62,11 @@ public class PlayerAttack
     {
         if (!ServerCheckIsPlayerAttacking()) return;
         if (!ServerCheckPlayerAttackCooldown()) return;
+        PlayerAttackData.TargetType targetType = ServerGetPlayerTargetType();
         if (!ServerCheckPlayerRange()) return;
+
+        //CHECK PLAYER TEAM
+        //CHECK TYPE
 
         player.playerData.Value.playerAttackData.UpdateData(playerLastAttackTime: Time.time, isPlayerAttacking: true);
 
@@ -79,4 +83,5 @@ public class PlayerAttack
     private bool ServerCheckPlayerAttackCooldown() => Time.time - player.playerData.Value.playerAttackData.playerLastAttackTime >= player.playerData.Value.playerDamageData.playerAttackCooldownTime;
     private bool ServerCheckPlayerRange() => Vector3.Distance(player.transform.position, ServerManager.Instance.players[player.playerData.Value.playerAttackData.playerTargetID].transform.position) <= player.playerData.Value.playerChampionData.range;
     private bool ServerCheckIsPlayerAttacking() => player.playerData.Value.playerAttackData.isPlayerAttacking;
+    private PlayerAttackData.TargetType ServerGetPlayerTargetType() => player.playerData.Value.playerAttackData.playerTargetType;
 }

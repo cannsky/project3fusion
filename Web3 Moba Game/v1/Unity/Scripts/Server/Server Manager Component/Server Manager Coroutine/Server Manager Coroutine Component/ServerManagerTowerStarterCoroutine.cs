@@ -21,10 +21,10 @@ public class ServerManagerTowerStarterCoroutine
 
     public static void Setup()
     {
-        foreach (GameObject towerGameObject in ServerManager.Instance.towers)
+        foreach (Tower tower in ServerManager.Instance.towers)
         {
-            towerGameObject.GetComponent<NetworkObject>().enabled = true;
-            towerGameObject.GetComponent<Tower>().enabled = true;
+            tower.GetComponent<NetworkObject>().enabled = true;
+            tower.GetComponent<Tower>().enabled = true;
         }
     }
 }

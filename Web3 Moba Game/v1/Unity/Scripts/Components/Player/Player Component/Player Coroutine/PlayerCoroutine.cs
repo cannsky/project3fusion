@@ -5,13 +5,13 @@ public class PlayerCoroutine
 {
     public Player player;
 
-    public PlayerAwaitSetupCoroutine playerAwaitSetupCoroutine;
+    public PlayerSetupCoroutine playerAwaitSetupCoroutine;
     public PlayerRegenerationCoroutine playerRegenerationCoroutine;
 
     public PlayerCoroutine(Player player)
     {
         this.player = player;
-        playerAwaitSetupCoroutine = new PlayerAwaitSetupCoroutine(player);
+        playerAwaitSetupCoroutine = new PlayerSetupCoroutine(player);
         playerRegenerationCoroutine = new PlayerRegenerationCoroutine(player);
     }
 

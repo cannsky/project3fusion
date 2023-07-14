@@ -1,18 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Unity.Netcode;
 
-public class Minion : MonoBehaviour
+public class Minion : NetworkBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public NetworkVariable<MinionData> minionData = new NetworkVariable<MinionData>();
+
+    public MinionSettings minionSettings;
+
+    public MinionAnimator minionAnimator;
+    public MinionAttack minionAttack;
+    public MinionCoroutine minionCoroutine;
+    public MinionEvent minionEvent;
+    public MinionMovement minionMovement;
+    public MinionUI minionUI;
+
+    public bool isReady;
+
+    private void Start()
     {
-        
+        if (IsServer) GenerateMinionData();
+        StartCoroutine((minionCoroutine = new MinionCoroutine(this)).minionAwaitSetupCoroutine.Coroutine());
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (!isReady) return;
+        if (IsServer) minionAttack.OnUpdate();
     }
+
+    private void GenerateMinionData() => minionData.Value = new MinionData();
 }

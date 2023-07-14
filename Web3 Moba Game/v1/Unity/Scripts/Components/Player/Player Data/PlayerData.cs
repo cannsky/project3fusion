@@ -14,8 +14,8 @@ public class PlayerData : INetworkSerializable
     public PlayerManaData playerManaData;
     public PlayerMovementData playerMovementData;
 
-    public PlayerTeam playerTeam;
     public int playerID;
+    public PlayerTeam playerTeam;
     public bool isSet;
 
     public PlayerData() 
@@ -31,7 +31,7 @@ public class PlayerData : INetworkSerializable
         playerMovementData = new PlayerMovementData();
     }
 
-    public PlayerData(Champion champion)
+    public PlayerData(Player player, Champion champion)
     {
         playerChampionData = new PlayerChampionData(champion);
         playerAnimationData = new PlayerAnimationData();
@@ -42,6 +42,8 @@ public class PlayerData : INetworkSerializable
         playerDamageData = new PlayerDamageData(champion);
         playerHealthData = new PlayerHealthData(champion);
         playerManaData = new PlayerManaData(champion);
+        playerID = (int) player.OwnerClientId;
+        playerTeam = (PlayerTeam) (playerID % 2);
         isSet = true;
     }
 

@@ -51,7 +51,7 @@ public class Player : NetworkBehaviour
 
     public void GeneratePlayerData()
     {
-        playerData.Value = new PlayerData(PlayerDataGenerator.GeneratePlayerChampionData(1));
+        playerData.Value = new PlayerData(this, PlayerDataGenerator.GeneratePlayerChampionData(1));
     }
     public void DestroyGameObject(GameObject removedGameObject) => Destroy(removedGameObject);
     public void DestroyGameObject(Animator removedGameObject) => Destroy(removedGameObject);

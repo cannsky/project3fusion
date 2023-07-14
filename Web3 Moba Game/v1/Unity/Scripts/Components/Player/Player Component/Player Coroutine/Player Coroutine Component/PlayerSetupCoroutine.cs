@@ -1,13 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class PlayerAwaitSetupCoroutine
+public class PlayerSetupCoroutine
 {
     private Player player;
 
-    public PlayerAwaitSetupCoroutine(Player player) => this.player = player;
+    public PlayerSetupCoroutine(Player player) => this.player = player;
 
     public IEnumerator Coroutine()
     {

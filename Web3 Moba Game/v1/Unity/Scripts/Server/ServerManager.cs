@@ -9,7 +9,8 @@ public class ServerManager : NetworkBehaviour
     public static ServerManager Instance;
 
     public Player[] players = new Player[10];
-    public List<GameObject> towers;
+    public Minion[] minions = new Minion[100];
+    public List<Tower> towers;
 
     private NetworkVariable<int> playerCount = new NetworkVariable<int>();
     private List<ServerCallback> callbacks = new List<ServerCallback>() { new ServerOnClientConnectedCallback(), new ServerOnClientDisconnectCallback() };
