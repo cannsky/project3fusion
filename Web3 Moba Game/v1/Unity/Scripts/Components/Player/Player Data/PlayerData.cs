@@ -43,7 +43,8 @@ public class PlayerData : INetworkSerializable
         playerHealthData = new PlayerHealthData(champion);
         playerManaData = new PlayerManaData(champion);
         playerID = (int) player.OwnerClientId;
-        playerTeam = (PlayerTeam) (playerID % 2);
+        //playerTeam = (PlayerTeam)(playerID % 2);
+        playerTeam = PlayerTeam.Red;
         isSet = true;
     }
 

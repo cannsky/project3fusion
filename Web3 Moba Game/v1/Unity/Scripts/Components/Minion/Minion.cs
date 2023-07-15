@@ -1,4 +1,5 @@
 using Unity.Netcode;
+using UnityEngine;
 
 public class Minion : NetworkBehaviour
 {
@@ -24,7 +25,11 @@ public class Minion : NetworkBehaviour
     {
         if (!isReady) return;
         if (IsServer) minionAttack.OnUpdate();
+        if (IsClient) minionAnimator.OnUpdate();
+        if (IsServer) minionMovement.OnUpdate();
     }
 
-    private void GenerateMinionData() => minionData.Value = new MinionData();
+    public GameObject InstantiateGameObject(GameObject addedGameObject, Vector3 position, Quaternion rotation) => Instantiate(addedGameObject, position, rotation);
+
+    [ClientRpc] public void MinionAttackAnimationOrderClientRpc() => minionAnimator.PlayAttackAnimation("Normal Attack");
 }

@@ -26,7 +26,26 @@ public class TowerAttack
                 projectileGameObject.GetComponent<NetworkObject>().Spawn();
 
                 Projectile projectile = projectileGameObject.GetComponent<Projectile>();
-                projectile.SetTarget(targetPlayer);
+                projectile.SetTarget(targetPlayer.transform, Projectile.TargetType.Player);
+                projectile.projectileSpeed = tower.towerSettings.projectileSpeed;
+                projectile.transform.position = new Vector3(projectile.transform.position.x, projectile.transform.position.y + tower.towerSettings.towerAttackHeight, projectile.transform.position.z);
+
+                tower.towerData.Value.towerAttackData.UpdateData(Time.time);
+            }
+
+            colliders = Physics.OverlapSphere(tower.transform.position, tower.towerData.Value.towerAttackData.towerAttackRange, LayerMask.GetMask("Minion"));
+
+            foreach (Collider collider in colliders)
+            {
+                Minion targetMinion = collider.transform.GetComponent<Minion>();
+
+                if ((TowerSettings.Team) targetMinion.minionData.Value.minionTeam == tower.towerSettings.towerTeam) continue;
+
+                GameObject projectileGameObject = tower.InstantiateGameObject(tower.towerSettings.towerProjectilePrefab, tower.transform.position, Quaternion.identity);
+                projectileGameObject.GetComponent<NetworkObject>().Spawn();
+
+                Projectile projectile = projectileGameObject.GetComponent<Projectile>();
+                projectile.SetTarget(targetMinion.transform, Projectile.TargetType.Minion);
                 projectile.projectileSpeed = tower.towerSettings.projectileSpeed;
                 projectile.transform.position = new Vector3(projectile.transform.position.x, projectile.transform.position.y + tower.towerSettings.towerAttackHeight, projectile.transform.position.z);
 

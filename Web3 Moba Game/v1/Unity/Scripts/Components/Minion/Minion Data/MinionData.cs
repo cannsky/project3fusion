@@ -7,6 +7,7 @@ public class MinionData : INetworkSerializable
 {
     public enum MinionTeam { Blue, Red, Neutral }
 
+    public MinionAnimationData minionAnimationData;
     public MinionAttackData minionAttackData;
     public MinionHealthData minionHealthData;
     public MinionMovementData minionMovementData;
@@ -20,6 +21,7 @@ public class MinionData : INetworkSerializable
         minionTeam = MinionTeam.Blue;
         minionID = 0;
         isSet = false;
+        minionAnimationData = new MinionAnimationData();
         minionAttackData = new MinionAttackData();
         minionHealthData = new MinionHealthData();
         minionMovementData = new MinionMovementData();
@@ -29,6 +31,7 @@ public class MinionData : INetworkSerializable
     {
         this.minionTeam = minionTeam;
         minionID = id;
+        minionAnimationData = new MinionAnimationData();
         minionAttackData = new MinionAttackData(minionSettings);
         minionHealthData = new MinionHealthData();
         minionMovementData = new MinionMovementData(destination);

@@ -6,6 +6,7 @@ public class MinionAttackData : INetworkSerializable
     public TargetType minionTargetType;
     public float minionAttackCooldown;
     public float minionLastAttackTime;
+    public float minionAttackRange;
     public bool isMinionAttacking;
 
     public MinionAttackData()
@@ -13,6 +14,7 @@ public class MinionAttackData : INetworkSerializable
         minionTargetType = TargetType.Player;
         minionAttackCooldown = 0;
         minionLastAttackTime = 0;
+        minionAttackRange = 0;
         isMinionAttacking = false;
     }
 
@@ -21,6 +23,7 @@ public class MinionAttackData : INetworkSerializable
         minionTargetType = TargetType.Player;
         minionAttackCooldown = minionSettings.attackCooldown;
         minionLastAttackTime = 0;
+        minionAttackRange = 5f;
         isMinionAttacking = false;
     }
 
@@ -29,6 +32,12 @@ public class MinionAttackData : INetworkSerializable
         serializer.SerializeValue(ref minionTargetType);
         serializer.SerializeValue(ref minionAttackCooldown);
         serializer.SerializeValue(ref minionLastAttackTime);
+        serializer.SerializeValue(ref minionAttackRange);
         serializer.SerializeValue(ref isMinionAttacking);
+    }
+
+    public void UpdateData(float minionLastAttackTime)
+    {
+        this.minionLastAttackTime = minionLastAttackTime;
     }
 }

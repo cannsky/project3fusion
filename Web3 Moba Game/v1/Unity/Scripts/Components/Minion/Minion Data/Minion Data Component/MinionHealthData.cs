@@ -16,4 +16,6 @@ public class MinionHealthData
         serializer.SerializeValue(ref minionTotalHealth);
         serializer.SerializeValue(ref minionHealth);
     }
+
+    public float ReduceHealth(float damage) => minionHealth -= damage;
 }

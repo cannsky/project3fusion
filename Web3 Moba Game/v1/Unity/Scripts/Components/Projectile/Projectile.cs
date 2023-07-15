@@ -3,22 +3,43 @@ using UnityEngine;
 
 public class Projectile : NetworkBehaviour
 {
+    public enum TargetType { Player, Minion, Tower }
+    public TargetType targetType;
     public Tower tower;
-    public Player targetPlayer;
+    public Transform target;
     public float projectileSpeed;
+    public float playerAttackDamage = 10f, minionAttackDamage = 5f, towerAttackDamage = 20f;
 
-    public void SetTarget(Player targetPlayer) => this.targetPlayer = targetPlayer;
+    public void SetTarget(Transform target, TargetType targetType)
+    {
+        this.target = target;
+        this.targetType = targetType;
+    }
 
     public void Update()
     {
         if (IsServer)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, projectileSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, target.position, projectileSpeed * Time.deltaTime);
 
-            if(Vector3.Distance(transform.position, targetPlayer.transform.position) <= 0.5f)
+            if(Vector3.Distance(transform.position, target.position) <= 0.5f)
             {
-                targetPlayer.playerEvent.ApplyDamage(10, 0);
-                gameObject.GetComponent<NetworkObject>().Despawn(); 
+                switch(targetType)
+                {
+                    case TargetType.Player:
+                        target.gameObject.GetComponent<Player>().playerEvent.ApplyDamage(playerAttackDamage, 0);
+                        break;
+                    case TargetType.Minion:
+                        target.gameObject.GetComponent<Minion>().minionEvent.ApplyDamage(minionAttackDamage, 0);
+                        break;
+                    case TargetType.Tower:
+                        Debug.Log("Target attack not implemented...");
+                        break;
+                    default:
+                        Debug.Log("Default...");
+                        break;
+                }
+                gameObject.GetComponent<NetworkObject>().Despawn();
             }
         }
     }
