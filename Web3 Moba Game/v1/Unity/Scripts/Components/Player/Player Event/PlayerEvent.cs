@@ -8,9 +8,10 @@ public class PlayerEvent
 
     public PlayerEvent(Player player) => this.player = player;
 
-    public void ApplyDamage(float adDamage, float apDamage)
+    public float ApplyDamage(float adDamage, float apDamage)
     {
         if(player.playerData.Value.playerHealthData.ReduceHealth(adDamage + apDamage) <= 0) Die();
+        return adDamage + apDamage;
     }
 
     public void Die()

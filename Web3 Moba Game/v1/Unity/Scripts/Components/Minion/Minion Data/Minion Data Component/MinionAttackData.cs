@@ -16,6 +16,14 @@ public class MinionAttackData : INetworkSerializable
         isMinionAttacking = false;
     }
 
+    public MinionAttackData(MinionSettings minionSettings)
+    {
+        minionTargetType = TargetType.Player;
+        minionAttackCooldown = minionSettings.attackCooldown;
+        minionLastAttackTime = 0;
+        isMinionAttacking = false;
+    }
+
     public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
     {
         serializer.SerializeValue(ref minionTargetType);

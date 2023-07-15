@@ -2,6 +2,10 @@ using Unity.Netcode;
 
 public class TowerData : INetworkSerializable
 {
+    public enum TowerTeam { Blue, Red, Neutral }
+
+    public int towerID;
+    public TowerTeam towerTeam;
     public bool isSet;
 
     public TowerAttackData towerAttackData;

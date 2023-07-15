@@ -11,6 +11,12 @@ public class MinionMovementData : INetworkSerializable
         movementDestination = Vector2.zero;
     }
 
+    public MinionMovementData(Vector3 desiredDestination)
+    {
+        desiredMovementDestination = new Vector2(desiredDestination.x, desiredDestination.z);
+        movementDestination = Vector2.zero;
+    }
+
     public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
     {
         serializer.SerializeValue(ref movementDestination);

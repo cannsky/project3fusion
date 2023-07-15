@@ -41,5 +41,6 @@ public class MinionSetupCoroutine
         minion.minionAttack = new MinionAttack(minion);
         minion.minionEvent = new MinionEvent(minion);
         minion.minionMovement = new MinionMovement(minion);
+        minion.minionMovement.OnStart();
     }
 }

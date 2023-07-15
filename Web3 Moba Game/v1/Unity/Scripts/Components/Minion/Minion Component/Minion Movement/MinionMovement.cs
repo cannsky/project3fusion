@@ -10,18 +10,11 @@ public class MinionMovement
     public Vector3 desiredDestination;
     public NavMeshAgent agent;
 
-    public MinionMovement(Minion minion)
-    {
-
-    }
+    public MinionMovement(Minion minion) => this.minion = minion;
 
     public void OnStart()
     {
+        agent = minion.GetComponent<NavMeshAgent>();
         agent.SetDestination(desiredDestination);
-    }
-
-    public void OnUpdate()
-    {
-
     }
 }

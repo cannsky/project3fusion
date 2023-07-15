@@ -17,7 +17,6 @@ public class Minion : NetworkBehaviour
 
     private void Start()
     {
-        if (IsServer) GenerateMinionData();
         StartCoroutine((minionCoroutine = new MinionCoroutine(this)).minionAwaitSetupCoroutine.Coroutine());
     }
 
