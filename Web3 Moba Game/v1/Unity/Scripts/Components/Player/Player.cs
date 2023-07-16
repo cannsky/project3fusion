@@ -59,7 +59,6 @@ public class Player : NetworkBehaviour
     public GameObject InstantiateGameObject(GameObject addedGameObject, Vector3 position, Quaternion rotation) => Instantiate(addedGameObject, position, rotation);
     public GameObject InstantiateChampionPrefab()
     {
-        Debug.Log(playerData.Value.playerChampionData.ID);
         return Instantiate(((Champion)PlayerResourceFinder.Find(PlayerResourceFinder.Type.Champion, playerData.Value.playerChampionData.ID)).characterPrefab, transform);
     }
     public void OnValueChanged(PlayerData a, PlayerData b)

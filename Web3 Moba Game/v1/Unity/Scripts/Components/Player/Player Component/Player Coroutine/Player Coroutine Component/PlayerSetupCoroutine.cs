@@ -42,12 +42,12 @@ public class PlayerSetupCoroutine
         player.GetComponent<Animator>().avatar = championGameObject.GetComponent<Animator>().avatar;
         player.DestroyGameObject(championGameObject.GetComponent<Animator>());
         player.playerAnimator = new PlayerAnimator(player);
-        player.playerAttack = new PlayerAttack(player);
-        player.playerMovement = new PlayerMovement(player);
+        if (!player.IsHost) player.playerAttack = new PlayerAttack(player);
+        if (!player.IsHost) player.playerMovement = new PlayerMovement(player);
         player.playerUI = new PlayerUI(player);
         player.playerVFX = new PlayerVFX(player);
         player.playerAnimator.OnStart();
-        player.playerMovement.OnStart();
+        if (!player.IsHost) player.playerMovement.OnStart();
         player.playerUI.OnStart();
     }
 

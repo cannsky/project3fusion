@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -22,9 +23,15 @@ public class PlayerMovement
 
     public void OnStart()
     {
-        agent = player.GetComponent<NavMeshAgent>();
         if (player.IsServer)
         {
+            player.AddComponent<NavMeshAgent>();
+            agent = player.GetComponent<NavMeshAgent>();
+            agent.angularSpeed = player.playerSettings.angularSpeed;
+            agent.acceleration = player.playerSettings.acceleration;
+            agent.stoppingDistance = player.playerSettings.stoppingDistance;
+            agent.autoBraking = player.playerSettings.autoBraking;
+            agent.destination = player.transform.position;
             if (player.IsHost) player.playerSpawn = new PlayerSpawn(player);
             player.playerSpawn.Spawn();
         }
