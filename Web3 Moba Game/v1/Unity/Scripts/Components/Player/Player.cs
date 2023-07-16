@@ -78,8 +78,8 @@ public class Player : NetworkBehaviour
         playerData.Value.playerMovementData.UpdateData(playerMovementDestination, playerMovementTime, isMoveRequested: true, isMoving: true);
     }
     [ServerRpc] public void PlayerAnimationStateRequestServerRpc(PlayerAnimationData.PlayerAnimationState playerAnimationState) => playerData.Value.playerAnimationData.UpdateData(playerAnimationState);
-    [ServerRpc] public void PlayerAttackRequestServerRpc(int playerTargetID)
+    [ServerRpc] public void PlayerAttackRequestServerRpc(int playerTargetID, PlayerAttackData.TargetType playerTargetType)
     {
-        playerData.Value.playerAttackData.UpdateData(playerTargetID: playerTargetID, isPlayerAttacking: false);
+        playerData.Value.playerAttackData.SetAttackSequenceData(playerTargetID, playerTargetType);
     }
 }

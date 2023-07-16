@@ -23,6 +23,12 @@ public class PlayerAttackData : INetworkSerializable
         serializer.SerializeValue(ref isPlayerAttacking);
     }
 
+    public void SetAttackSequenceData(int playerTargetID, TargetType playerTargetType)
+    {
+        this.playerTargetID = playerTargetID;
+        this.playerTargetType = playerTargetType;
+    }
+
     public void UpdateData(bool isPlayerAttacking = false)
     {
         this.isPlayerAttacking = isPlayerAttacking;

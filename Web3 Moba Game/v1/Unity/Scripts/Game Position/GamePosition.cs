@@ -51,7 +51,7 @@ public class GamePosition : MonoBehaviour
     {
         foreach(GamePosition gamePosition in gamePositions)
             if(gamePosition.type == type && gamePosition.team == team)
-                return new Vector3(gamePosition.transform.position.x + Random.Range(0, 3), gamePosition.transform.position.y - 1f, gamePosition.transform.position.z + Random.Range(0, 3));
+                return new Vector3(gamePosition.transform.position.x + Random.Range(0, 3), gamePosition.transform.position.y, gamePosition.transform.position.z + Random.Range(0, 3));
         return Vector3.zero;
     }
 }

@@ -55,7 +55,7 @@ public class PlayerAttack
 
     public void ClientTryAttackRequest()
     {
-        player.PlayerAttackRequestServerRpc(localTargetPlayer.playerData.Value.playerID);
+        player.PlayerAttackRequestServerRpc(localTargetPlayer.playerData.Value.playerID, PlayerAttackData.TargetType.Player);
     }
     
     public void ServerTryAttack()
