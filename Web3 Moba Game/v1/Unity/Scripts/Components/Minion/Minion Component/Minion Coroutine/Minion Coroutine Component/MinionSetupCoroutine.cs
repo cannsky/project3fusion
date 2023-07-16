@@ -12,10 +12,15 @@ public class MinionSetupCoroutine
     {
         while (true)
         {
-            if (minion.minionData != null && minion.minionData.Value.isSet)
+            if (minion == null) break;
+            if (minion != null && minion.minionData != null && minion.minionData.Value != null)
             {
-                Setup();
-                break;
+                if (minion.minionData.Value.isSet)
+                {
+                    Setup();
+                    break;
+                }
+                else yield return null;
             }
             else yield return null;
         }

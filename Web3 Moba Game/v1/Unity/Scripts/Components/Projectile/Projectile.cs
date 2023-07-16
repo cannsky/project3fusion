@@ -20,7 +20,12 @@ public class Projectile : NetworkBehaviour
     {
         if (IsServer)
         {
-            transform.position = Vector3.MoveTowards(transform.position, target.position, projectileSpeed * Time.deltaTime);
+            if (target == null)
+            {
+                gameObject.GetComponent<NetworkObject>().Despawn();
+                return;
+            }
+            if (target != null) transform.position = Vector3.MoveTowards(transform.position, target.position, projectileSpeed * Time.deltaTime);
 
             if(Vector3.Distance(transform.position, target.position) <= 0.5f)
             {
@@ -33,7 +38,7 @@ public class Projectile : NetworkBehaviour
                         target.gameObject.GetComponent<Minion>().minionEvent.ApplyDamage(minionAttackDamage, 0);
                         break;
                     case TargetType.Tower:
-                        Debug.Log("Target attack not implemented...");
+                        target.gameObject.GetComponent<Tower>().towerEvent.ApplyDamage(towerAttackDamage, 0);
                         break;
                     default:
                         Debug.Log("Default...");

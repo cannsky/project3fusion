@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class TowerCoroutine
 {
-    public TowerAwaitSetupCoroutine towerAwaitSetupCoroutine;
+    public TowerSetupCoroutine towerAwaitSetupCoroutine;
 
     public TowerCoroutine(Tower tower)
     {
-        towerAwaitSetupCoroutine = new TowerAwaitSetupCoroutine(tower);
+        towerAwaitSetupCoroutine = new TowerSetupCoroutine(tower);
     }
 }

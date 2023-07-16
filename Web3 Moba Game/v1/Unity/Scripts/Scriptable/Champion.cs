@@ -1,4 +1,4 @@
-using Unity.Netcode;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Champion", menuName = "Champion")]
@@ -7,6 +7,7 @@ public class Champion : ScriptableObject
     public enum ChampionType { Melee, Ranged }
     public enum DamageType { AD, AP }
     public Skill[] skills = new Skill[4];
+    public List<AudioSource> audioSources;
     public GameObject characterPrefab;
     public int ID;
     public ChampionType championType;

@@ -14,6 +14,8 @@ public class PlayerSettings
     public float playerCameraMoveSpeed = 0.1f;
     [Header("Player Movement")]
     public float playerRotationSpeed = 8f;
+    [Header("Player SFX")]
+    public AudioSource playerAudioSource;
     [Header("Player VFX")]
     public GameObject playerCursorVFX;
     [Header("Player UI")]

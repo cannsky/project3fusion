@@ -27,9 +27,5 @@ public class ServerManagerTowerStarterCoroutine
             tower.GetComponent<NetworkObject>().enabled = true;
             tower.GetComponent<Tower>().enabled = true;
         }
-        ServerManager.Instance.blueSpawner.GetComponent<NetworkObject>().enabled = true;
-        ServerManager.Instance.blueSpawner.GetComponent<Spawner>().enabled = true;
-        //ServerManager.Instance.redSpawner.GetComponent<NetworkObject>().enabled = true;
-        //ServerManager.Instance.redSpawner.GetComponent<Spawner>().enabled = true;
     }
 }

@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerAwaitSetupCoroutine
+public class TowerSetupCoroutine
 {
     private Tower tower;
 
-    public TowerAwaitSetupCoroutine(Tower tower) => this.tower = tower;
+    public TowerSetupCoroutine(Tower tower) => this.tower = tower;
 
     public IEnumerator Coroutine()
     {
@@ -32,10 +32,12 @@ public class TowerAwaitSetupCoroutine
     public void ClientSetup()
     {
         tower.towerUI = new TowerUI(tower);
+        tower.towerUI.OnStart();
     }
 
     public void ServerSetup()
     {
         tower.towerAttack = new TowerAttack(tower);
+        tower.towerEvent = new TowerEvent(tower);
     }
 }

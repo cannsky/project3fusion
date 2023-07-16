@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 [System.Serializable]
@@ -17,4 +18,6 @@ public class TowerSettings
     public float projectileSpeed = 8f;
     [Header("Tower Health")]
     public float towerTotalHealth;
+    [Header("Tower UI")]
+    public TMP_Text towerHealthText;
 }

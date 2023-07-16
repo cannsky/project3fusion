@@ -37,12 +37,14 @@ public class GamePosition : MonoBehaviour
             case Type.MinionSpawn: Gizmos.DrawWireSphere(transform.position, 2f); break;
             default: Gizmos.DrawWireCube(transform.position, new Vector3(2f, 2f, 2f)); break;
         }
+        #if UNITY_EDITOR
         Handles.Label(transform.position, team.ToString() + " " + type.ToString(), new GUIStyle()
         {
             normal = new GUIStyleState() { textColor = color },
             alignment = TextAnchor.MiddleCenter,
             fontStyle = FontStyle.Bold
         });
+        #endif
     }
 
     public static Vector3 GetRandomPosition(Type type, Team team)

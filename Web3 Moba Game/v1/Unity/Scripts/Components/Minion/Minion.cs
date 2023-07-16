@@ -27,6 +27,7 @@ public class Minion : NetworkBehaviour
         if (IsServer) minionAttack.OnUpdate();
         if (IsClient) minionAnimator.OnUpdate();
         if (IsServer) minionMovement.OnUpdate();
+        if (IsClient) minionUI.OnUpdate();
     }
 
     public GameObject InstantiateGameObject(GameObject addedGameObject, Vector3 position, Quaternion rotation) => Instantiate(addedGameObject, position, rotation);

@@ -11,6 +11,7 @@ public class Tower : NetworkBehaviour
 
     public TowerAttack towerAttack;
     public TowerCoroutine towerCoroutine;
+    public TowerEvent towerEvent;
     public TowerUI towerUI;
 
     public bool isReady;
@@ -25,6 +26,7 @@ public class Tower : NetworkBehaviour
     {
         if (!isReady) return;
         if (IsServer) towerAttack.OnUpdate();
+        if (IsClient) towerUI.OnUpdate();
     }
 
     private void GenerateTowerData()

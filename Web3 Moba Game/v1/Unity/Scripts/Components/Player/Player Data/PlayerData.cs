@@ -29,6 +29,7 @@ public class PlayerData : INetworkSerializable
         playerHealthData = new PlayerHealthData();
         playerManaData = new PlayerManaData();
         playerMovementData = new PlayerMovementData();
+        isSet = false;
     }
 
     public PlayerData(Player player, Champion champion)
@@ -43,22 +44,23 @@ public class PlayerData : INetworkSerializable
         playerHealthData = new PlayerHealthData(champion);
         playerManaData = new PlayerManaData(champion);
         playerID = (int) player.OwnerClientId;
-        //playerTeam = (PlayerTeam)(playerID % 2);
-        playerTeam = PlayerTeam.Red;
+        playerTeam = (PlayerTeam)(playerID % 2);
         isSet = true;
     }
 
     public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
     {
-        serializer.SerializeValue(ref playerID);
-        serializer.SerializeValue(ref isSet);
-        serializer.SerializeValue(ref playerTeam);
+        playerChampionData.NetworkSerialize(serializer);
         playerAnimationData.NetworkSerialize(serializer);
-        playerArmorData.NetworkSerialize(serializer);
         playerAttackData.NetworkSerialize(serializer);
-        playerDamageData.NetworkSerialize(serializer);
-        playerManaData.NetworkSerialize(serializer);
-        playerMovementData.NetworkSerialize(serializer);
         playerEquipmentData.NetworkSerialize(serializer);
+        playerMovementData.NetworkSerialize(serializer);
+        playerArmorData.NetworkSerialize(serializer);
+        playerDamageData.NetworkSerialize(serializer);
+        playerHealthData.NetworkSerialize(serializer);
+        playerManaData.NetworkSerialize(serializer);
+        serializer.SerializeValue(ref playerID);
+        serializer.SerializeValue(ref playerTeam);
+        serializer.SerializeValue(ref isSet);
     }
 }

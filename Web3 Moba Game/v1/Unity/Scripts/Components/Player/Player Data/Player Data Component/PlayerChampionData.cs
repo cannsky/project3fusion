@@ -1,4 +1,5 @@
 using Unity.Netcode;
+using UnityEngine;
 
 public class PlayerChampionData : INetworkSerializable
 {
@@ -9,6 +10,7 @@ public class PlayerChampionData : INetworkSerializable
     public ChampionType championType;
     public DamageType damageType;
     public float range;
+    public bool isChampionSet;
 
     public PlayerChampionData() { }
 
@@ -18,6 +20,7 @@ public class PlayerChampionData : INetworkSerializable
         championType = (ChampionType) networkChampion.championType;
         damageType = (DamageType) networkChampion.damageType;
         range = networkChampion.range;
+        isChampionSet = true;
     }
 
     public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
@@ -26,5 +29,6 @@ public class PlayerChampionData : INetworkSerializable
         serializer.SerializeValue(ref championType);
         serializer.SerializeValue(ref damageType);
         serializer.SerializeValue(ref range);
+        serializer.SerializeValue(ref isChampionSet);
     }
 }

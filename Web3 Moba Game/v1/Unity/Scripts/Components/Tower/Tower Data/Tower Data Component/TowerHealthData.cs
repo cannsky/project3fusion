@@ -22,4 +22,6 @@ public class TowerHealthData : INetworkSerializable
         serializer.SerializeValue(ref towerHealth);
         serializer.SerializeValue(ref towerTotalHealth);
     }
+
+    public float ReduceHealth(float damage) => towerHealth -= damage;
 }

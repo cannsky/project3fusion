@@ -11,10 +11,16 @@ public class PlayerSetupCoroutine
     {
         while (true)
         {
-            if (player.playerData != null && player.playerData.Value.isSet)
+            if (player == null) break;
+            if (player.playerData != null && 
+                player.playerData.Value != null)
             {
-                Setup();
-                break;
+                if (player.playerData.Value.isSet && player.playerData.Value.playerChampionData.isChampionSet)
+                {
+                    Setup();
+                    break;
+                }
+                else yield return null;
             }
             else yield return null;
         }

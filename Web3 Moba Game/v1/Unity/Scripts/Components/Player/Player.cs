@@ -17,6 +17,7 @@ public class Player : NetworkBehaviour
     public PlayerEvent playerEvent;
     public PlayerInput playerInput;
     public PlayerMovement playerMovement;
+    public PlayerSFX playerSFX;
     public PlayerSpawn playerSpawn;
     public PlayerUI playerUI;
     public PlayerVFX playerVFX;
@@ -56,9 +57,14 @@ public class Player : NetworkBehaviour
     public void DestroyGameObject(GameObject removedGameObject) => Destroy(removedGameObject);
     public void DestroyGameObject(Animator removedGameObject) => Destroy(removedGameObject);
     public GameObject InstantiateGameObject(GameObject addedGameObject, Vector3 position, Quaternion rotation) => Instantiate(addedGameObject, position, rotation);
-    public GameObject InstantiateChampionPrefab() => Instantiate(((Champion)PlayerResourceFinder.Find(PlayerResourceFinder.Type.Champion, playerData.Value.playerChampionData.ID)).characterPrefab, transform);
+    public GameObject InstantiateChampionPrefab()
+    {
+        Debug.Log(playerData.Value.playerChampionData.ID);
+        return Instantiate(((Champion)PlayerResourceFinder.Find(PlayerResourceFinder.Type.Champion, playerData.Value.playerChampionData.ID)).characterPrefab, transform);
+    }
     public void OnValueChanged(PlayerData a, PlayerData b)
     {
+        if (!isReady) return;
         Debug.Log("Old Data: " + a.playerID + " New Data: " + b.playerID);
         playerUI.UpdatePlayerUI();
     }

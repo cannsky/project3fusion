@@ -29,7 +29,12 @@ public class MinionMovement
     public void OnUpdate()
     {
         if (!minion.IsServer) return;
-        if (isTargetDetected)
+        if (isTargetDetected && target == null)
+        {
+            agent.isStopped = false;
+            minion.minionData.Value.minionAnimationData.UpdateState(MinionAnimationData.MinionAnimationState.Idle);
+        }
+        else if (isTargetDetected)
         {
             SmoothRotate();
             agent.isStopped = true;
