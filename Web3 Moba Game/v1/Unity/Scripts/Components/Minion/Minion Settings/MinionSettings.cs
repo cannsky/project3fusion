@@ -7,7 +7,8 @@ using UnityEngine;
 public class MinionSettings
 {
     [Header("Minion General")]
-    public GameObject minionProjectilePrefab;
+    public GameObject minionProjectileBluePrefab;
+    public GameObject minionProjectileRedPrefab;
     public float minionProjectileSpeed = 10f;
     [Header("Minion Attack")]
     public float attackCooldown = 3;

@@ -6,8 +6,15 @@ using UnityEngine;
 public class MinionAttack
 {
     private Minion minion;
+    private MinionData.MinionTeam minionTeam;
+    private GameObject minionProjectilePrefab;
 
-    public MinionAttack(Minion minion) => this.minion = minion;
+    public MinionAttack(Minion minion) 
+    {
+        this.minion = minion;
+        MinionData.MinionTeam minionTeam = minion.minionData.Value.minionTeam;
+        minionProjectilePrefab = minionTeam == MinionData.MinionTeam.Blue ? minion.minionSettings.minionProjectileBluePrefab : minion.minionSettings.minionProjectileRedPrefab;
+    }
 
     public void OnUpdate()
     {
@@ -23,7 +30,7 @@ public class MinionAttack
                 {
                     minion.minionMovement.isTargetDetected = true;
                     minion.minionMovement.target = targetPlayer.transform;
-                    GameObject projectileGameObject = minion.InstantiateGameObject(minion.minionSettings.minionProjectilePrefab, minion.transform.position, Quaternion.identity);
+                    GameObject projectileGameObject = minion.InstantiateGameObject(minionProjectilePrefab, minion.transform.position, Quaternion.identity);
                     projectileGameObject.GetComponent<NetworkObject>().Spawn();
 
                     Projectile projectile = projectileGameObject.GetComponent<Projectile>();
@@ -46,7 +53,7 @@ public class MinionAttack
                 {
                     minion.minionMovement.isTargetDetected = true;
                     minion.minionMovement.target = targetTower.transform;
-                    GameObject projectileGameObject = minion.InstantiateGameObject(minion.minionSettings.minionProjectilePrefab, minion.transform.position, Quaternion.identity);
+                    GameObject projectileGameObject = minion.InstantiateGameObject(minionProjectilePrefab, minion.transform.position, Quaternion.identity);
                     projectileGameObject.GetComponent<NetworkObject>().Spawn();
 
                     Projectile projectile = projectileGameObject.GetComponent<Projectile>();
@@ -78,7 +85,7 @@ public class MinionAttack
                 {
                     minion.minionMovement.isTargetDetected = true;
                     minion.minionMovement.target = targetMinion.transform;
-                    GameObject projectileGameObject = minion.InstantiateGameObject(minion.minionSettings.minionProjectilePrefab, minion.transform.position, Quaternion.identity);
+                    GameObject projectileGameObject = minion.InstantiateGameObject(minionProjectilePrefab, minion.transform.position, Quaternion.identity);
                     projectileGameObject.GetComponent<NetworkObject>().Spawn();
 
                     Projectile projectile = projectileGameObject.GetComponent<Projectile>();
