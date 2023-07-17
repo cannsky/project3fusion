@@ -11,6 +11,8 @@ What we want to imply that, with using a validator we are able to give heavy wor
 What we will try to do is,
 - Data transfer between player, smart contract and validator
 - Connectivity adjustment between player, smart contract and validator
+- Smart calculations inside both smart contract and validator
+- More can be added here...
 
 **We would like to note again that, we are focused on creation of a working web3 moba game with the architecture we described. After this architecture is implemented, we will convert example project to a web3 game development kit.**
 
@@ -24,7 +26,8 @@ Here is the tools that are being developed in this project,
 
 - Argent Wallet Connector
 - Game Validator
-- Game
+- Cairo 2 Game Contract Examples
+- Game Example
 
 ### Versions
 
