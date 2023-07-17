@@ -64,21 +64,25 @@ public class Player : NetworkBehaviour
     public void OnValueChanged(PlayerData a, PlayerData b)
     {
         if (!isReady) return;
-        Debug.Log("Old Data: " + a.playerID + " New Data: " + b.playerID);
-        playerUI.UpdatePlayerUI();
     }
 
     //SERVER RPC'S DON'T CHECK ANYTHING!
     //THIS IS TOTALLY UNSAFE!
 
     [ClientRpc] public void PlayerAttackAnimationOrderClientRpc() => playerAnimator.PlayAttackAnimation("Normal Attack");
-    [ServerRpc] public void PlayerMovementRequestServerRpc(Vector2 playerMovementDestination, float playerMovementTime)
+    [ClientRpc] public void HandleHitVFXClientRpc(Vector3 position, Quaternion rotation) => playerVFX.PlayVFX(playerSettings.hitVFX, position, rotation, 1f);
+    [ServerRpc] public void PlayerMovementRequestServerRpc(Vector2 playerMovementDestination)
     {
-        playerData.Value.playerMovementData.UpdateData(playerMovementDestination, playerMovementTime, isMoveRequested: true, isMoving: true);
+        playerData.Value.playerMovementData.UpdateData(playerMovementDestination, Time.time, isMoveRequested: true, isMoving: true);
     }
     [ServerRpc] public void PlayerAnimationStateRequestServerRpc(PlayerAnimationData.PlayerAnimationState playerAnimationState) => playerData.Value.playerAnimationData.UpdateData(playerAnimationState);
     [ServerRpc] public void PlayerAttackRequestServerRpc(int playerTargetID, PlayerAttackData.TargetType playerTargetType)
     {
         playerData.Value.playerAttackData.SetAttackSequenceData(playerTargetID, playerTargetType);
+    }
+    [ServerRpc]
+    public void PlayerStopAttackRequestServerRpc()
+    {
+        playerData.Value.playerAttackData.StopAttackSequenceData();
     }
 }

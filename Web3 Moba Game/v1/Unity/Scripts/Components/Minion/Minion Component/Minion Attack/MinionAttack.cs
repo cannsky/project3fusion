@@ -35,6 +35,10 @@ public class MinionAttack
 
                     minion.MinionAttackAnimationOrderClientRpc();
                 }
+                else
+                {
+                    minion.minionMovement.isTargetDetected = false;
+                }
             }
             else if ((colliders = Physics.OverlapSphere(minion.transform.position, minion.minionData.Value.minionAttackData.minionAttackRange, LayerMask.GetMask("Tower"))).Length > 0){
                 Tower targetTower = colliders[0].transform.GetComponent<Tower>();
@@ -53,6 +57,10 @@ public class MinionAttack
                     minion.minionData.Value.minionAttackData.UpdateData(Time.time);
 
                     minion.MinionAttackAnimationOrderClientRpc();
+                }
+                else
+                {
+                    minion.minionMovement.isTargetDetected = false;
                 }
             }
             else if ((colliders = Physics.OverlapSphere(minion.transform.position, minion.minionData.Value.minionAttackData.minionAttackRange, LayerMask.GetMask("Minion"))).Length > 0)
@@ -81,6 +89,10 @@ public class MinionAttack
                     minion.minionData.Value.minionAttackData.UpdateData(Time.time);
 
                     minion.MinionAttackAnimationOrderClientRpc();
+                }
+                else
+                {
+                    minion.minionMovement.isTargetDetected = false;
                 }
             }
             else

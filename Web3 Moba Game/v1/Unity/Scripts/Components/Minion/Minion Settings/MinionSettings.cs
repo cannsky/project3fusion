@@ -15,4 +15,6 @@ public class MinionSettings
     public float totalHealth = 20;
     [Header("Minion UI")]
     public TMP_Text minionHealthText;
+    [Header("Minion VFX")]
+    public GameObject hitVFX;
 }

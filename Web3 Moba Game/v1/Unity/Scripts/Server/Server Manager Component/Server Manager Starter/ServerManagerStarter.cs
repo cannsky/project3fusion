@@ -12,7 +12,7 @@ public class ServerManagerStarter
     public static void Start()
     {
         if (!ServerManagerArguments.isServerStart) return;
-        SceneManager.LoadScene(ServerManagerArguments.sceneName);
+        //SceneManager.LoadScene(ServerManagerArguments.sceneName);
         unityTransport = NetworkManager.Singleton.gameObject.GetComponent<UnityTransport>();
         unityTransport.ConnectionData.Port = (ushort) ServerManagerArguments.serverPort;
         unityTransport.ConnectionData.Address = "127.0.0.1";

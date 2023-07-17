@@ -23,6 +23,7 @@ public class PlayerSettings
     public AudioSource playerAudioSource;
     [Header("Player VFX")]
     public GameObject playerCursorVFX;
+    public GameObject hitVFX;
     [Header("Player UI")]
     public TMP_Text playerNameText;
     public TMP_Text playerLevelText, playerHealthText, playerManaText;

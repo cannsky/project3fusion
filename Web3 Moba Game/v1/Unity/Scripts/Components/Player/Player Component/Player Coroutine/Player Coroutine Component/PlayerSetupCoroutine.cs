@@ -49,6 +49,7 @@ public class PlayerSetupCoroutine
         player.playerAnimator.OnStart();
         if (!player.IsHost) player.playerMovement.OnStart();
         player.playerUI.OnStart();
+        player.playerVFX.OnStart();
     }
 
     public void ServerSetup()

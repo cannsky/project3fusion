@@ -27,6 +27,12 @@ public class PlayerAttackData : INetworkSerializable
     {
         this.playerTargetID = playerTargetID;
         this.playerTargetType = playerTargetType;
+        isPlayerAttacking = true;
+    }
+
+    public void StopAttackSequenceData()
+    {
+        isPlayerAttacking = false;
     }
 
     public void UpdateData(bool isPlayerAttacking = false)
@@ -40,10 +46,9 @@ public class PlayerAttackData : INetworkSerializable
         this.isPlayerAttacking = isPlayerAttacking;
     }
 
-    public void UpdateData(float playerLastAttackTime = 0, bool isPlayerAttacking = false)
+    public void UpdateData(float playerLastAttackTime = 0)
     {
         this.playerLastAttackTime = playerLastAttackTime;
-        this.isPlayerAttacking = isPlayerAttacking;
     }
 
     public void UpdateData(int playerTargetID = 0, float playerLastAttackTime = 0, bool isPlayerAttacking = false)

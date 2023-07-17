@@ -50,23 +50,25 @@ public class PlayerMovement
     {
         if (!player.IsOwner) return;
         if (!player.IsClient) return;
-        player.PlayerMovementRequestServerRpc(new Vector2(movePosition.x, movePosition.z), Time.time);
+        player.PlayerMovementRequestServerRpc(new Vector2(movePosition.x, movePosition.z));
     }
 
     public void ServerTryMove()
     {
         if (!player.IsServer) return;
         SmoothRotate();
+        if (!player.playerData.Value.playerMovementData.isMoving) StopMovement();
         if (!player.playerData.Value.playerMovementData.isMoveRequested && player.playerData.Value.playerMovementData.isMoving && agent.remainingDistance < 0.1f) StopMovement();
         if (!player.playerData.Value.playerMovementData.isMoveRequested) return;
-
-        player.playerData.Value.playerAttackData.UpdateData(isPlayerAttacking: false);
-        
         agent.SetDestination(new Vector3(player.playerData.Value.playerMovementData.playerMovementDestination.x, 0, player.playerData.Value.playerMovementData.playerMovementDestination.y));
-        
+        agent.isStopped = false;
         player.playerData.Value.playerMovementData.UpdateData(isMoveRequested: false, isMoving: true);
-
         player.playerData.Value.playerAnimationData.UpdateData(PlayerAnimationData.PlayerAnimationState.Run);
+    }
+
+    public void ServerTryMove(Transform targetTransform)
+    {
+        player.playerData.Value.playerMovementData.UpdateData(new Vector2(targetTransform.position.x, targetTransform.position.z), Time.time, isMoveRequested: true, isMoving: true);
     }
 
     private void SmoothRotate()
@@ -86,6 +88,7 @@ public class PlayerMovement
 
     public void StopMovement()
     {
+        agent.isStopped = true;
         player.playerData.Value.playerMovementData.UpdateData(isMoveRequested: false, isMoving: false);
         player.playerData.Value.playerAnimationData.UpdateData(PlayerAnimationData.PlayerAnimationState.Idle);
     }

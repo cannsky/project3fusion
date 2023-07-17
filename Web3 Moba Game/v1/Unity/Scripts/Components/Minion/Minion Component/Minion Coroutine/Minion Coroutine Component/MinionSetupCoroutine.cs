@@ -37,6 +37,7 @@ public class MinionSetupCoroutine
     {
         minion.minionAnimator = new MinionAnimator(minion);
         minion.minionUI = new MinionUI(minion);
+        minion.minionVFX = new MinionVFX(minion);
         minion.minionAnimator.OnStart();
         minion.minionUI.OnStart();
     }

@@ -31,7 +31,7 @@ public class MinionMovement
         if (!minion.IsServer) return;
         if (isTargetDetected && target == null)
         {
-            agent.isStopped = false;
+            agent.isStopped = true;
             minion.minionData.Value.minionAnimationData.UpdateState(MinionAnimationData.MinionAnimationState.Idle);
         }
         else if (isTargetDetected)
@@ -40,11 +40,8 @@ public class MinionMovement
             agent.isStopped = true;
             minion.minionData.Value.minionAnimationData.UpdateState(MinionAnimationData.MinionAnimationState.Idle);
         }
-        else
-        {
-            agent.isStopped = false;
-            minion.minionData.Value.minionAnimationData.UpdateState(MinionAnimationData.MinionAnimationState.Run);
-        }
+        else agent.isStopped = false;
+        if (!agent.isStopped) minion.minionData.Value.minionAnimationData.UpdateState(MinionAnimationData.MinionAnimationState.Run);
     }
 
     private void SmoothRotate()

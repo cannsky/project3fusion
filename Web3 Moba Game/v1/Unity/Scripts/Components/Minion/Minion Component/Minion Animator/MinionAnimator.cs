@@ -13,9 +13,9 @@ public class MinionAnimator
 
     public void OnUpdate()
     {
+        Debug.Log(minion.minionData.Value.minionAnimationData.minionAnimationState.ToString());
         if (minion.minionData.Value.minionAnimationData.minionAnimationState == MinionAnimationData.MinionAnimationState.Idle) PlayRunAnimation(false);
-        else if (minion.minionData.Value.minionAnimationData.minionAnimationState == MinionAnimationData.MinionAnimationState.Run) PlayRunAnimation(true);
-        else if (minion.minionData.Value.minionAnimationData.minionAnimationState == MinionAnimationData.MinionAnimationState.Attack) PlayAttackAnimation("Normal Attack");
+        else PlayRunAnimation(true);
     }
 
     public void ResetAnimator()

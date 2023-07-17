@@ -20,6 +20,7 @@ public class PlayerAnimator
 
     public void PlayAttackAnimation(string animationName) 
     {
+        player.playerVFX.PlayVFX();
         ResetAnimator();
         animator.Play(animationName); 
     }

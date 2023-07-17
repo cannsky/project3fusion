@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [System.Serializable]
@@ -7,7 +8,7 @@ public class PlayerAttack
     
     public bool continuouslyCheckRange;
 
-    private Player localTargetPlayer;
+    public Player localTargetPlayer;
 
     private RaycastHit hit;
     private float targetDistance;
@@ -24,16 +25,13 @@ public class PlayerAttack
     {
         if (player.playerInput.RightClick)
         {
-            continuouslyCheckRange = false;
-            localTargetPlayer = null;
-            if (ClientCheckIsPlayerTargeted()) ClientCheckTargetPlayerRequirements();
-        }
-
-        if (localTargetPlayer != null && continuouslyCheckRange)
-        {
-            targetDistance = Vector3.Distance(player.transform.position, localTargetPlayer.transform.position);
-            if (ClientCheckPlayerRange() && ClientCheckPlayerAttackCooldown()) ClientTryAttackRequest();
-            else player.playerMovement.ClientTryMovementRequest(localTargetPlayer.transform.position);
+            if (!ClientCheckIsPlayerTargeted())
+            {
+                player.PlayerStopAttackRequestServerRpc();
+                return;
+            }
+            localTargetPlayer = hit.collider.gameObject.GetComponent<Player>();
+            if (ClientCheckIsPlayerTargeted()) player.PlayerAttackRequestServerRpc(localTargetPlayer.playerData.Value.playerID, PlayerAttackData.TargetType.Player);
         }
     }
 
@@ -50,23 +48,43 @@ public class PlayerAttack
             player.playerMovement.ClientTryMovementRequest(localTargetPlayer.transform.position);
             localTargetPlayer = null;
         }
-        else continuouslyCheckRange = true;
-    }
-
-    public void ClientTryAttackRequest()
-    {
-        player.PlayerAttackRequestServerRpc(localTargetPlayer.playerData.Value.playerID, PlayerAttackData.TargetType.Player);
+        else
+        {
+            continuouslyCheckRange = true;
+            player.playerInput.RightClick = false;
+        }
     }
     
     public void ServerTryAttack()
     {
         if (!ServerCheckIsPlayerAttacking()) return;
+        if (!ServerCheckTargetRange())
+        {
+            player.playerMovement.ServerTryMove(GetTargetTransform());
+            return;
+        }
+        else player.playerMovement.StopMovement();
         if (!ServerCheckPlayerAttackCooldown()) return;
-        if (!ServerCheckTargetRange()) return;
         if (!ServerCheckTargetTeam()) return;
+
+        player.StartCoroutine(SmoothRotate());
         ServerAttackTarget();
-        player.playerData.Value.playerAttackData.UpdateData(playerLastAttackTime: Time.time, isPlayerAttacking: true);
+        player.playerData.Value.playerAttackData.UpdateData(playerLastAttackTime: Time.time);
         player.PlayerAttackAnimationOrderClientRpc();
+    }
+
+    private IEnumerator SmoothRotate()
+    {
+        float x = 0;
+        float lastTime;
+        while (true)
+        {
+            player.transform.rotation = Quaternion.Slerp(player.transform.rotation, Quaternion.LookRotation(GetTargetTransform().position), 10f * Time.deltaTime);
+            lastTime = Time.time;
+            yield return null;
+            x += Time.time - lastTime;
+            if (x > 1f) break;
+        }
     }
 
     private bool ClientCheckIsPlayerTargeted() => Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, LayerMask.GetMask("Player"));
@@ -75,6 +93,18 @@ public class PlayerAttack
     private bool ServerCheckPlayerAttackCooldown() => Time.time - player.playerData.Value.playerAttackData.playerLastAttackTime >= player.playerData.Value.playerDamageData.playerAttackCooldownTime;
     private bool ServerCheckIsPlayerAttacking() => player.playerData.Value.playerAttackData.isPlayerAttacking;
     private PlayerAttackData.TargetType ServerGetPlayerTargetType() => player.playerData.Value.playerAttackData.playerTargetType;
+
+    public Transform GetTargetTransform() => ServerGetPlayerTargetType() switch
+    {
+        PlayerAttackData.TargetType.Player => ServerGetTargetPlayerTransform(),
+        PlayerAttackData.TargetType.Minion => ServerGetTargetMinionTransform(),
+        PlayerAttackData.TargetType.Tower => ServerGetTargetTowerTransform(),
+        _ => null
+    };
+
+    public Transform ServerGetTargetPlayerTransform() => ServerManager.Instance.players[player.playerData.Value.playerAttackData.playerTargetID].transform;
+    public Transform ServerGetTargetMinionTransform() => ServerManager.Instance.minions[player.playerData.Value.playerAttackData.playerTargetID].transform;
+    public Transform ServerGetTargetTowerTransform() => ServerManager.Instance.towers[player.playerData.Value.playerAttackData.playerTargetID].transform;
 
     public bool ServerCheckTargetRange() => ServerGetPlayerTargetType() switch
     {

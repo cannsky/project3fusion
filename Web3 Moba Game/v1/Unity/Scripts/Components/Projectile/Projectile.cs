@@ -33,9 +33,11 @@ public class Projectile : NetworkBehaviour
                 {
                     case TargetType.Player:
                         target.gameObject.GetComponent<Player>().playerEvent.ApplyDamage(playerAttackDamage, 0);
+                        target.GetComponent<Player>().HandleHitVFXClientRpc(transform.position, transform.rotation);
                         break;
                     case TargetType.Minion:
                         target.gameObject.GetComponent<Minion>().minionEvent.ApplyDamage(minionAttackDamage, 0);
+                        target.GetComponent<Minion>().HandleHitVFXClientRpc(transform.position, transform.rotation);
                         break;
                     case TargetType.Tower:
                         target.gameObject.GetComponent<Tower>().towerEvent.ApplyDamage(towerAttackDamage, 0);

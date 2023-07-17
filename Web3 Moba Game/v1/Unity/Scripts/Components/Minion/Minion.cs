@@ -1,4 +1,5 @@
 using Unity.Netcode;
+using UnityEditor;
 using UnityEngine;
 
 public class Minion : NetworkBehaviour
@@ -13,6 +14,7 @@ public class Minion : NetworkBehaviour
     public MinionEvent minionEvent;
     public MinionMovement minionMovement;
     public MinionUI minionUI;
+    public MinionVFX minionVFX;
 
     public bool isReady;
 
@@ -31,6 +33,13 @@ public class Minion : NetworkBehaviour
     }
 
     public GameObject InstantiateGameObject(GameObject addedGameObject, Vector3 position, Quaternion rotation) => Instantiate(addedGameObject, position, rotation);
+    public void DestroyGameObject(GameObject removedGameObject) => Destroy(removedGameObject);
 
-    [ClientRpc] public void MinionAttackAnimationOrderClientRpc() => minionAnimator.PlayAttackAnimation("Normal Attack");
+    [ClientRpc] public void HandleHitVFXClientRpc(Vector3 position, Quaternion rotation) => minionVFX.PlayVFX(minionSettings.hitVFX, position, rotation, 1f);
+
+    [ClientRpc]
+    public void MinionAttackAnimationOrderClientRpc()
+    {
+        if (minionAnimator != null) minionAnimator.PlayAttackAnimation("Normal Attack");
+    }
 }
