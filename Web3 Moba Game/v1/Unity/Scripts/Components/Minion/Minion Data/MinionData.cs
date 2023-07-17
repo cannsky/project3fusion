@@ -43,6 +43,7 @@ public class MinionData : INetworkSerializable
         serializer.SerializeValue(ref minionTeam);
         serializer.SerializeValue(ref minionID);
         serializer.SerializeValue(ref isSet);
+        minionAnimationData.NetworkSerialize(serializer);
         minionAttackData.NetworkSerialize(serializer);
         minionHealthData.NetworkSerialize(serializer);
         minionMovementData.NetworkSerialize(serializer);

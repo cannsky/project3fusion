@@ -13,7 +13,6 @@ public class MinionAnimator
 
     public void OnUpdate()
     {
-        Debug.Log(minion.minionData.Value.minionAnimationData.minionAnimationState.ToString());
         if (minion.minionData.Value.minionAnimationData.minionAnimationState == MinionAnimationData.MinionAnimationState.Idle) PlayRunAnimation(false);
         else PlayRunAnimation(true);
     }
