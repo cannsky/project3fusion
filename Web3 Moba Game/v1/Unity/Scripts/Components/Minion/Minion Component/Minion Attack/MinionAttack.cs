@@ -6,14 +6,12 @@ using UnityEngine;
 public class MinionAttack
 {
     private Minion minion;
-    private MinionData.MinionTeam minionTeam;
     private GameObject minionProjectilePrefab;
 
-    public MinionAttack(Minion minion) 
+    public MinionAttack(Minion minion)
     {
         this.minion = minion;
-        MinionData.MinionTeam minionTeam = minion.minionData.Value.minionTeam;
-        minionProjectilePrefab = minionTeam == MinionData.MinionTeam.Blue ? minion.minionSettings.minionProjectileBluePrefab : minion.minionSettings.minionProjectileRedPrefab;
+        minionProjectilePrefab = minion.minionData.Value.minionTeam == MinionData.MinionTeam.Blue ? minion.minionSettings.minionProjectileBluePrefab : minion.minionSettings.minionProjectileRedPrefab;
     }
 
     public void OnUpdate()
