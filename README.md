@@ -35,6 +35,6 @@ Here is the tools that are being developed in this project,
 
 ### Used Technologies
 
-- Smart Contract: Cairo
+- Smart Contract: Cairo 2
 - Game: Unity Engine
 - Validator: Unity Netcode
