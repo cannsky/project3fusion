@@ -24,7 +24,6 @@ public class TowerUI
 
     public void UpdateTowerUI()
     {
-        Debug.Log(tower.towerData.Value.towerHealthData.towerHealth);
         towerHealthText.text = tower.towerData.Value.towerHealthData.towerHealth + " / " + tower.towerData.Value.towerHealthData.towerTotalHealth;
     }
 

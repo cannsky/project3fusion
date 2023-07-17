@@ -14,7 +14,11 @@ public class ServerManagerTowerStarterCoroutine
                 Setup();
                 break;
             }
-            else if (ServerManager.Instance.IsClient) break;
+            else if (ServerManager.Instance.IsClient && !ServerManager.Instance.IsHost)
+            {
+                Setup();
+                break;
+            }
             else yield return null;
         }
     }
