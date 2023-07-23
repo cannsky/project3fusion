@@ -1,4 +1,4 @@
-### Project 3 Fusion
+### Project 3 Fusion - Spark
 
 **This project is an experimental project to see the limits of blockchain gaming.** As a team of three people, we open sourcely develop a web3 game development kit **(There is only example game right now, we currently focus on creating a stable example game. After that we will convert this game to a game development kit)** that enables web3 game developers to build more complex web3 games. The real methodolgy behind is creating a validator, player and smart contract trio whose connectivity level can be adjusted before deploying the contract related to the speed of the network, complexity of the game etc. This means, validator can be in full, half or little contact with smart contract. Also keep in mind that what we call validator, is a game server with specific web3 software embeded to it.
 
